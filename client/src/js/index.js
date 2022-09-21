@@ -3,8 +3,14 @@ import Editor from './editor';
 import './database';
 import '../css/style.css';
 
+// Import logo image
+import Logo from '../images/logo.png';
+
 const main = document.querySelector('#main');
 main.innerHTML = '';
+
+// Set logo on webpage
+document.getElementsByClassName('navbar-brand').src = Logo;
 
 const loadSpinner = () => {
   const spinner = document.createElement('div');
