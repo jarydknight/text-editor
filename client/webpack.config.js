@@ -31,7 +31,7 @@ module.exports = () => {
       new WebpackPwaManifest({
         name: 'Text Editor Application',
         short_name: 'Text Editor',
-        description: 'Text Editior for daily notes',
+        description: 'Text Editior',
         background_color: '#99ff99',
         theme_color: '#99ff99cd',
         start_url: './',
