@@ -8,7 +8,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
-    mode: 'development',
+    mode: 'production',
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
@@ -18,12 +18,60 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: 'Webpack Plugin',
+      }),
+      // Service Worker
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'service-worker.js',
+      }),
+      // Creating a manifest
+      new WebpackPwaManifest({
+        name: 'Text Editor Application',
+        short_name: 'Text Editor',
+        description: 'Text Editior',
+        background_color: '#99ff99',
+        theme_color: '#99ff99cd',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ],
+    
 
     module: {
+      // Image rule
       rules: [
-        
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+        // CSS rule
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        // Babel rule
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', { targets: "defaults" }]
+              ]
+            }
+          }
+        }
       ],
     },
   };
