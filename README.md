@@ -74,7 +74,7 @@
 
   ## Demo
 
-  [Heroku Deployment](https://frozen-sands-72166.herokuapp.com/)
+  [Heroku Deployment](https://mighty-brushlands-68890.herokuapp.com/)
 
   ![](./assets/images/frozen-sands-72166.herokuapp.com_.png)
 
